@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pokemon-ai/static/css/main.073c9b0a.css",
-    "main.js": "/pokemon-ai/static/js/main.6a89a501.js",
+    "main.css": "/pokemon-ai/static/css/main.bb4f92a2.css",
+    "main.js": "/pokemon-ai/static/js/main.da37a57d.js",
     "static/js/787.5a8aaca9.chunk.js": "/pokemon-ai/static/js/787.5a8aaca9.chunk.js",
-    "static/media/logo.svg": "/pokemon-ai/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/pokeball.svg": "/pokemon-ai/static/media/pokeball.2db7de44dd9ea6558c0113d7d9e3db9d.svg",
     "index.html": "/pokemon-ai/index.html",
-    "main.073c9b0a.css.map": "/pokemon-ai/static/css/main.073c9b0a.css.map",
-    "main.6a89a501.js.map": "/pokemon-ai/static/js/main.6a89a501.js.map",
+    "main.bb4f92a2.css.map": "/pokemon-ai/static/css/main.bb4f92a2.css.map",
+    "main.da37a57d.js.map": "/pokemon-ai/static/js/main.da37a57d.js.map",
     "787.5a8aaca9.chunk.js.map": "/pokemon-ai/static/js/787.5a8aaca9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.6a89a501.js"
+    "static/css/main.bb4f92a2.css",
+    "static/js/main.da37a57d.js"
   ]
 }
