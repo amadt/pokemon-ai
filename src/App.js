@@ -2,6 +2,8 @@ import logo from './pokeball.svg';
 import './App.css';
 import { useState } from "react";
 
+import generate from './api/generate';
+
 function App() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
@@ -9,22 +11,11 @@ function App() {
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ animal: animalInput }),
-      });
+      const data = await generate(animalInput);
+      console.log(data);
 
-      const data = await response.json();
-      if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
-      }
-
-      setResult(data.result);
+      setResult(data[0]?.message?.content);
       setAnimalInput("");
-      window.alert(data.result)
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -52,6 +43,7 @@ function App() {
           <input type="submit" value="Generate names" />
         </form>
 
+        <div>{result}</div>
 
     </div>
   );
