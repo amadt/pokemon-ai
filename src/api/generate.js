@@ -1,13 +1,13 @@
 import OpenAI from "openai";
 
-console.log(process.env);
+console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
 
 const openai = new OpenAI({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true 
 });
 
-async function generate(type, word, description) {
+async function generate(type, word, description, where) {
   if (!openai.apiKey) {
     throw new Error("OpenAI API key not configured, please follow instructions in README.md");
   }
@@ -30,7 +30,7 @@ async function generate(type, word, description) {
         The description should be no longer than 120 charecters.
         chose one or two moves already existing `
       }, 
-      { role: 'user', content: `This is a ${word} Pokemon with a type of ${type} and the following description: ${description}. ` },
+      { role: 'user', content: `This is a ${word} Pokemon with a type of ${type} and the following description: ${description}. This pokemon lives in ${where}` },
     ],
     temperature: 0.6,
   });
