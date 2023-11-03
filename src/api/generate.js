@@ -27,7 +27,7 @@ async function generate(type, word, description, where) {
         We will provide the type of pokemon and a brief description. 
         You will generate a name and a description for the new pokemon.
         Provide a HP value, height (in feet and inches) and weight (in pounds).
-        The description should be no longer than 120 charecters.
+        The description should be no longer than 100 charecters.
         chose one or two moves already existing `
       }, 
       { role: 'user', content: `This is a ${word} Pokemon with a type of ${type} and the following description: ${description}. This pokemon lives in ${where}` },

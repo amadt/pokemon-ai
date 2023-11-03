@@ -4,18 +4,28 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import logo from '../assets/pokeball.svg';
+import Card from "./components/Card";
 import generate from '../api/generate';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function Home() {
   const [pokemonType, setPokemonType] = useState("Normal");
-  const [pokemonWord, setPokemonWord] = useState("");
+  const [pokemonWord, setPokemonWord] = useState("mushroom");
   const [pokemonDesc, setPokemonDesc] = useState("");
   const [pokemonWhere, setPokemonWhere] = useState("");
 
-  const [prediction, setPrediction] = useState(null);
-  const [textResult, setTextResult] = useState();
+  const [prediction, setPrediction] = useState({
+    output: ['https://pbxt.replicate.delivery/wUV5RJb7jzbVAFEOEqR1UUU0NGvM6JYY6yBmmXrwpDl1stbE/out-0.png']
+  });
+  const [textResult, setTextResult] = useState({
+    Description: "A ghostly Pokemon perched upon dark clouds, channeling the power of lightning like a spectral Zeus. It crackles with electric energy, ready to unleash its shocking wrath.",
+    HP: "800",
+    Height: "3 feet 6 inches",
+    Moves: ['1. Thunderbolt', '2. Shadow Ball'],
+    Name: "Voltcloud",
+    Weight: "45 pounds"
+  });
   const [error, setError] = useState(null);
 
   const submitImage = async () => {
@@ -163,22 +173,24 @@ export default function Home() {
       <div className={styles.side}>
         <h3>Results</h3>
         <div className={styles.results}>
-          {prediction && (
+          <Card 
+            description={textResult.Description}
+            height={textResult.Height}
+            weight={textResult.Weight}
+            word={pokemonWord}
+            hp={textResult.HP}
+            image={prediction?.output?.[0]}
+            name={textResult.Name}
+            type={pokemonType} 
+          />
+
+          {false && prediction && (
             <div>
-                {prediction.output && (
-                  <div className={styles.imageWrapper}>
-                  <Image
-                    fill
-                    src={prediction.output[prediction.output.length - 1]}
-                    alt="output"
-                    sizes='100vw'
-                  />
-                  </div>
-                )}
-                <p>status: {prediction.status}</p>
+
+              <p>status: {prediction.status}</p>
             </div>
           )}
-          {textResult && (
+          {false && textResult && (
             Object.keys(textResult).map((key) =>
               <div key={key} style={{ display: 'flex', gap: 10 }}>
                 <span>{key}:</span>

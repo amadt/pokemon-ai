@@ -1,0 +1,94 @@
+.card {
+  width: 420px;
+  pointer-events: none;
+  height: 590px;
+  position: relative;
+  color: black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Helvetica, sans-serif;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+}
+
+.image {
+  position: absolute;
+  z-index: 4;
+  top: 58px;
+  left: 35px;
+  width: 352px;
+  height: 235px;
+}
+  
+.name {
+  position: absolute;
+  z-index: 6;
+  left: 108px;
+  top: 22px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.hp {
+  position: absolute;
+  z-index: 6;
+  left: 280px;
+  top: 22px;
+  width: 80px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.bar {
+  display: flex;
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  width: 100%;
+  top: 293px;
+  justify-content: center;
+  font-size: 0.6rem;
+  gap: 7px;
+}
+
+.desc {
+  position: absolute;
+  z-index: 6;
+  font-style: italic;
+  font-size: 0.5rem;
+  top: 493px;
+  width: 199px;
+  right: 29px;
+}
+
+.clipLeft,
+.clipRight {
+  background-color: transparent;
+  height: 12ex;
+  width: 44px;
+}
+
+.clipLeft {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  float: left;
+  shape-outside: polygon(0 0, 100% 0, 0 100%);
+}
+
+.clipRight {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  float: right;
+  shape-outside: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.weakness {
+  position: absolute;
+  z-index: 6;
+  top: 514px;
+  left: 38px;
+}

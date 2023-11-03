@@ -84,6 +84,8 @@
 .results { 
   min-height: 600px;
   width: 85%;
+  display: flex;
+  justify-content: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
