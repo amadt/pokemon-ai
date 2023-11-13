@@ -1,0 +1,18 @@
+
+.root {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.link {
+ font-size: 1.0rem; 
+}
+
+.link.selected {
+  color: yellow;
+}

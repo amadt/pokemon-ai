@@ -12,7 +12,6 @@ export default function Gallary({ onClose }) {
         </h2>
         <h3>Creation Gallary</h3>
       </div>
-      <div className={styles.gallaryButton} onClick={() => onClose()}>Back to generator</div>
       <div className={styles.gallary}>
         {data.map((item) => (
           <div key={item.id} className={styles.item}>

@@ -7,8 +7,11 @@ import logo from '../assets/pokeball.svg';
 import Card from "./components/Card";
 import Loading from "./components/Loading";
 import Gallary from "./components/Gallary";
+import EntryForm from "./components/EntryForm";
+import Menu from './components/Menu';
 import generate from '../api/generate';
 import html2canvas from "html2canvas";
+import { useMediaQuery } from 'react-responsive';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -92,13 +95,9 @@ const EXAMPLE_CARD = {
   )
 };
 
-
-
 export default function Home() {
-  // const [prompt, setPrompt] = useState("");
-  // const [result, setResult] = useState("");
-  // const [instructions, setInstructions] = useState("");
-  
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
 
@@ -111,7 +110,7 @@ export default function Home() {
   });
   const [textResult, setTextResult] = useState();
   const [error, setError] = useState(null);
-  const [isGallery, setIsGallery] = useState(false);
+  const [navigation, setNavigation] = useState('generate');
 
   const submitImage = async () => {
     setLoadingImage(true);
@@ -167,6 +166,7 @@ export default function Home() {
     e.preventDefault();
     submitText();
     submitImage();
+    if (isTabletOrMobile) { setNavigation('results'); }
   };
   const isLoading = loadingData || loadingImage;
 
@@ -188,106 +188,14 @@ export default function Home() {
         })
   }
 
-  if (isGallery) {
-    return (
-      <Gallary onClose={() => setIsGallery(false)} />
-    );
-  }
-
   return (
-    <div className={styles.container}>
-      <div className={styles.gallaryButton} onClick={() => setIsGallery(true)}>Gallary</div>
-      <div className={styles.side}>
-        <Head>
-          <title>William&apos;s Tech Fair</title>
-        </Head>
-
-        <Image src={logo} className={styles.logo} alt="logo" />
-        <h2 className="App-header">
-          William&apos;s Pokemon Generator
-        </h2>
-        <h3>Tech Fair 2023</h3>
-
-        <form className={styles.form} onSubmit={handleSubmit}>
-          {/*
-          <div className={styles.formRow}>
-            <label htmlFor="instructions">Instructions</label>
-            <textarea
-              style={{ height: 100, width: 500 }}
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value) }
-            />
-          </div>
-          <div className={styles.formRow}>
-            <label htmlFor="prompt">Prompt</label>
-            <textarea
-              style={{ height: 100, width: 500 }}
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value) }
-            />
-          </div>
-          <div className={styles.formRow}>
-            <label htmlFor="result">Result</label>
-            <textarea
-              style={{ height: 100, width: 500 }}
-              value={result}
-            />
-          </div>
-          */}
-          <div className={styles.formRow}>
-            <label htmlFor="pokemonType">Pokemon Type</label>
-            <select
-              value={pokemonType}
-              onChange={(e) => setPokemonType(e.target.value) }
-            >
-              <option>Normal</option>
-              <option>Fire</option>
-              <option>Water</option>
-              <option>Grass</option>
-              <option>Bug</option>
-              <option>Dark</option>
-              <option>Dragon</option>
-              <option>Electric</option>
-              <option>Fairy</option>
-              <option>Fighting</option>
-              <option>Flying</option>
-              <option>Ghost</option>
-              <option>Ground</option>
-              <option>Ice</option>
-              <option>Poison</option>
-              <option>Psychic</option>
-              <option>Rock</option>
-              <option>Steel</option>
-            </select>          
-          </div>
-          <div className={styles.formRow}>
-            <label htmlFor="description">Describe the Pokemon</label>
-            <input 
-              type="text" 
-              name="description" 
-              value={pokemonDesc}
-              onChange={e => setPokemonDesc(e.target.value)}
-            />
-          </div>
-          <div className={styles.formRow}>
-            <label htmlFor="where">Where does the Pokemon live?</label>
-            <input 
-              type="text" 
-              name="where" 
-              value={pokemonWhere}
-              onChange={e => setPokemonWhere(e.target.value)}
-            />
-          </div>
-          <button disabled={isLoading} type="submit" >Generate Pokemon</button>
-        </form>
-
-        {error && <div>{error}</div>}
-      </div>
-      <div className={styles.vl}></div>
-      <div className={styles.side}>
-        {(isLoading) && <Loading />}
-        {!isLoading && textResult && (
-          <>
+    <div className={styles.root}>
+      <Menu navigation={navigation} onNavigate={setNavigation} />
+      {navigation === 'gallary' ? <Gallary /> : 
+       navigation === 'results' ? (
+        <div className={styles.side}>
+          {(isLoading) && <Loading />}
+          {!isLoading && textResult && (
             <div className={styles.results}>
               <h3>Results</h3>
               <Card 
@@ -308,25 +216,78 @@ export default function Home() {
                 <button onClick={handleSave}>Save</button>
                 <button onClick={submitImage}>Redo Image</button>
               </span>
+            </div>
+          )}
+        </div>
+       ) : (
+        <div className={styles.container}>
+          <div className={styles.side}>
+            <Head>
+              <title>William&apos;s Tech Fair</title>
+            </Head>
 
-              {false && prediction && (
-                <div>
+            <Image src={logo} className={styles.logo} alt="logo" />
+            <h2 className={styles.header}>
+              William&apos;s Pokemon Generator
+            </h2>
+            <h3 className={styles.subheader}>Tech Fair 2023</h3>
+            <EntryForm 
+              isLoading={isLoading}
+              onSubmit={handleSubmit}
+              onDesc={setPokemonDesc}
+              onType={setPokemonType}
+              onWhere={setPokemonWhere}
+              desc={pokemonDesc}
+              type={pokemonType}
+              where={pokemonWhere}
+            />
+          </div>
+          {!isTabletOrMobile && <div className={styles.vl}></div>}
+          {!isTabletOrMobile && (
+            <div className={styles.side}>
+              {(isLoading) && <Loading />}
+              {!isLoading && textResult && (
+                <div className={styles.results}>
+                  <h3>Results</h3>
+                  <Card 
+                    description={textResult.Description}
+                    height={textResult.Height}
+                    weight={textResult.Weight}
+                    word={textResult.Classification}
+                    hp={textResult.HP}
+                    image={prediction?.output?.[0]}
+                    name={textResult.Name || textResult['Pokemon Name']}
+                    resistance={textResult.Resistance}
+                    type={pokemonType} 
+                    retreat={textResult['Retreat Value']}
+                    weakness={textResult.Weakness}
+                    moves={textResult.Moves}
+                  />
+                  <span class={styles.resultButtons}>
+                    <button onClick={handleSave}>Save</button>
+                    <button onClick={submitImage}>Redo Image</button>
+                  </span>
 
-                  <p>status: {prediction.status}</p>
+                  {false && prediction && (
+                    <div>
+
+                      <p>status: {prediction.status}</p>
+                    </div>
+                  )}
+                  {false && textResult && (
+                    Object.keys(textResult).map((key) =>
+                      <div key={key} style={{ display: 'flex', gap: 10 }}>
+                        <span>{key}:</span>
+                        <span>{textResult[key]}</span>
+                      </div>
+                    )
+                  )}
                 </div>
               )}
-              {false && textResult && (
-                Object.keys(textResult).map((key) =>
-                  <div key={key} style={{ display: 'flex', gap: 10 }}>
-                    <span>{key}:</span>
-                    <span>{textResult[key]}</span>
-                  </div>
-                )
-              )}
             </div>
-          </>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
