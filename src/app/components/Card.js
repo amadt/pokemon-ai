@@ -36,7 +36,7 @@ const MAP = {
 }
 
 const fixWord = (word) => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
+  return word?.charAt(0).toUpperCase() + word?.slice(1);
 }
 
 const fixHeight = (height) => {
@@ -46,6 +46,13 @@ const fixWeight = (weight) => {
   return weight.replace('pounds', 'lbs');
 }
 
+const isDark = (type) => {
+  if (type === 'Dark') return true;
+  if (type === 'Poison') return true;
+  return false;
+}
+
+
 export default function Card({
   description,
   hp,
@@ -53,11 +60,15 @@ export default function Card({
   name,
   type,
   height,
+  moves,
+  retreat,
+  resistance,
+  weakness,
   weight,
   word
 }) {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${isDark(type) ? styles.dark : styles.light}`} id="card">
       <Image
         src={MAP[type]}
         className={styles.background}  
@@ -82,15 +93,51 @@ export default function Card({
         <span>HT {fixHeight(height)}</span>
         <span>WT {fixWeight(weight)}</span>
       </div>
-      <div class={styles.desc}>
-        <div class={styles.clipLeft}></div>
-        <div class={styles.clipRight}></div>
+      <div className={styles.desc}>
+        <div className={styles.clipLeft}></div>
+        <div className={styles.clipRight}></div>
         <p>
           {description}
         </p>
       </div>
+      <div className={styles.moves}>
+        {moves.map((move) => (
+          <div className={styles.move} key={move.name}>
+            <div className={styles.move}>
+            <div className={styles.moveTitle}>
+              <div className={styles.moveTitleLeft}>
+                <div className={styles.moveIcons}>
+                  {move.energyCost.map((energy, i) => (
+                    <Icon type={energy} size={16} key={`element${i}`}  />
+                  ))}
+                </div>
+                <div className={styles.moveName}>
+                  {move.name}
+                </div>
+              </div>
+              <div className={styles.moveValue}>
+                {move.damage}
+              </div>
+            </div>
+            <div className={styles.moveDescription}>
+              {move.instructions}
+            </div>
+          </div>
+        </div>
+      ))}
+      </div>
       <div className={styles.weakness}>
-        <Icon type="Water" size={12} />
+        {weakness ? <Icon type={weakness} size={10} multiplier="2" /> : ''}
+      </div>
+      <div className={styles.resistance}>
+        {resistance && resistance !== 'None' && (
+          <Icon type={resistance} size={10} value="-30" />
+        )}
+      </div>
+      <div className={styles.retreat}>
+        {retreat >= 1 && <Icon type="Normal" size={10} />}
+        {retreat >= 2 && <Icon type="Normal" size={10} />}
+        {retreat >= 3 && <Icon type="Normal" size={10} />}
       </div>
     </div>
   );   

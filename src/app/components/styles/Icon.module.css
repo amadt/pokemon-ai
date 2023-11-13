@@ -1,7 +1,5 @@
 .circle {
   border-radius: 100%;
-  width: 18px;
-  height: 18px;
   position: relative;
 }
 
@@ -9,6 +7,23 @@
   position: absolute;
   top: 3px;
   left: 3px;
+}
+
+.row {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.multRow {
+  display: flex;
+  gap: 1px;
+  align-items: center;
+}
+
+.multiplier {
+  font-size: 0.9rem;
+  color: #000;
 }
 
 .bug {

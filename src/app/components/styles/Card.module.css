@@ -3,8 +3,15 @@
   pointer-events: none;
   height: 590px;
   position: relative;
-  color: black;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Helvetica, sans-serif;
+}
+
+.light {
+  color: black;
+}
+
+.dark {
+  color: white;
 }
 
 .background {
@@ -55,6 +62,7 @@
   justify-content: center;
   font-size: 0.6rem;
   gap: 7px;
+  color: black;
 }
 
 .desc {
@@ -63,7 +71,7 @@
   font-style: italic;
   font-size: 0.5rem;
   top: 493px;
-  width: 199px;
+  width: 192px;
   right: 29px;
 }
 
@@ -92,3 +100,67 @@
   top: 514px;
   left: 38px;
 }
+
+.resistance {
+  position: absolute;
+  z-index: 6;
+  top: 514px;
+  left: 111px;
+}
+
+.retreat {
+  position: absolute;
+  display: flex;
+  z-index: 6;
+  top: 545px;
+  left: 84px;
+  gap: 2px;
+}
+
+.moves {
+  position: absolute;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 320px;
+  left: 39px;
+  right: 39px;
+}
+
+.move {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.moveTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.moveTitleLeft {
+  display: flex;
+}
+
+.moveName {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.moveIcons {
+  display: flex;
+  gap: 2px;
+  align-items: center;  
+  width: 84px;
+}
+
+.moveDescription {
+  font-size: 0.9rem;
+}
+
+.moveValue {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+

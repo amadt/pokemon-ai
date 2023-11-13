@@ -16,6 +16,7 @@ import styles from "./styles/Icon.module.css";
 
 const MAP = {
   Bug: grass,
+  Colorless: normal,
   Dark: dark,
   Dragon: dragon,
   Electric: electric,
@@ -37,8 +38,8 @@ const MAP = {
 
 const STYLE_MAP = {
   Water: styles.water,
-
   Bug: styles.grass,
+  Colorless: styles.normal,
   Dark: styles.dark,
   Dragon: styles.dragon,
   Electric: styles.electric,
@@ -59,20 +60,33 @@ const STYLE_MAP = {
 };
 
 export default function Icon({
+  multiplier,
   size,
+  value,
   type
 }) {
-
-  console.log(STYLE_MAP[type]);
-
   return (
-    <div className={`${STYLE_MAP[type]} ${styles.circle}`}>
-      <Image
-        className={styles.icon}
-        src={MAP[type]}
-        width={size}
-        height={size} 
-      />
+    <div className={styles.row}>
+      <div 
+        className={`${STYLE_MAP[type]} ${styles.circle}`}
+        style={{ width: size + 6, height: size + 6 } }
+      >
+        <Image
+          className={styles.icon}
+          src={MAP[type]}
+          width={size}
+          height={size} 
+        />
+      </div>
+      {multiplier && (
+        <div className={styles.multRow}>
+          <span className={styles.multiplier} style={{ height: 17 }}>x</span>
+          <span className={styles.multiplier}>{multiplier}</span>
+        </div>
+      )}
+      {value && (
+        <span className={styles.multiplier}>{value}</span>
+      )}
     </div>
   )
 }

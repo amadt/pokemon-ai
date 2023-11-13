@@ -1,0 +1,70 @@
+
+.container {
+  font-size: 1.3rem;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+}
+
+.gallaryButton {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.gallary {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+  padding: 0 50px;
+  position: absolute;
+  top: 150px;
+  bottom: 30px;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 420px;
+}
+
+.type {
+  display: flex;
+  gap: 8px;
+}
+
+.table {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table tr {
+  min-height: 50px;
+}
+
+.table th {
+  width: 130px;
+  background-color: gold;
+  text-align: left;
+  padding: 8px;
+  color: black;
+  border: 1px solid gold;
+}
+
+.table td {
+  border: 1px solid gold;
+  background-color: palegoldenrod;
+  color: black;
+  padding: 8px;
+}
+
+.header {
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  top: 20px;
+}
