@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 import logo from '../assets/pokeball.svg';
 import Card from "./components/Card";
 import Loading from "./components/Loading";
-import Gallary from "./components/Gallary";
+import Gallery from "./components/Gallery";
 import EntryForm from "./components/EntryForm";
 import Menu from './components/Menu';
 import generate from '../api/generate';
@@ -191,7 +191,7 @@ export default function Home() {
   return (
     <div className={styles.root}>
       <Menu navigation={navigation} onNavigate={setNavigation} />
-      {navigation === 'gallary' ? <Gallary /> : 
+      {navigation === 'gallery' ? <Gallery /> : 
        navigation === 'results' ? (
         <div className={styles.side}>
           {(isLoading) && <Loading />}

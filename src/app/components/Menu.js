@@ -24,10 +24,10 @@ export default function Menu({
         </div>
       )}
       <div 
-        onClick={() => onNavigate('gallary')} 
-        className={`${styles.link} ${navigation === 'gallary' ? styles.selected : ''}`}
+        onClick={() => onNavigate('gallery')} 
+        className={`${styles.link} ${navigation === 'gallery' ? styles.selected : ''}`}
       >
-        Gallary
+        Gallery
       </div>
     </div>
 

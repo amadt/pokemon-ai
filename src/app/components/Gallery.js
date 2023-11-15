@@ -1,18 +1,18 @@
-import styles from './styles/Gallary.module.css';
-import data from '../data/gallary';
+import styles from './styles/Gallery.module.css';
+import data from '../data/gallery';
 import Image from "next/image";
 import Icon from "./Icon";
 
-export default function Gallary({ onClose }) {
+export default function Gallery({ onClose }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className="App-header">
           William&apos;s Pokemon Generator
         </h2>
-        <h3>Creation Gallary</h3>
+        <h3>Creation Gallery</h3>
       </div>
-      <div className={styles.gallary}>
+      <div className={styles.gallery}>
         {data.map((item) => (
           <div key={item.id} className={styles.item}>
             <Image

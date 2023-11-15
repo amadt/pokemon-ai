@@ -10,7 +10,7 @@
   gap: 30px;
 }
 
-.gallary {
+.gallery {
   display: flex;
   gap: 80px;
   flex-wrap: wrap;
@@ -21,7 +21,7 @@
 }
 
 @media (min-width: 1250px) {
-  .gallary {
+  .gallery {
     padding: 0 50px;
   }
 }
